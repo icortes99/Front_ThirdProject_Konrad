@@ -27,7 +27,7 @@ function SignUp(){
 
     const changeTab = (e, x)=>{
         e.preventDefault()
-        let approved = false
+        let approved = true
 
         //validation
 
@@ -35,7 +35,7 @@ function SignUp(){
             if(currentTab === 0){
                 setCurrentTab(currentTab + x)
             } else {
-                //redirect
+                setCurrentTab(currentTab + x)
             }
         }
     }
@@ -52,45 +52,45 @@ function SignUp(){
                 <div className={`${block}__signup__steps-container`}>
                     <div className={`${block}__step__container`}>
                         <h2 className={`${block}__step__title`}>Account information</h2>
-                        <span className={`${block}__step__span`}></span>
+                        <div className={`${block}__step__span`}></div>
                     </div>
                     <div className={`${block}__step__container`}>
                         <h2 className={`${block}__step__title`}>Personal information</h2>
-                        <span className={`${block}__step__span`}></span>
+                        <div className={`${block}__step__span`}></div>
                     </div>
                 </div>
 
                 <form onSubmit={(e)=>changeTab(e, 1)} action='POST' className={currentTab === 0 ? `${block}__signup-tab ${block}__signup-tab--show` : `${block}__signup-tab`}>
-                    <div>
-                        <label htmlFor='inEmail'>Email</label>
-                        <input id='inEmail' type='text' name='email' onChange={handleChange} pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$' required/>
+                    <div className={`${block}__input-container`}>
+                        <label htmlFor='inEmail' className={`${block}__input-container__label`}>Email</label>
+                        <input id='inEmail' type='text' name='email' onChange={handleChange} pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$' required className={`${block}__input-container__input`}/>
                     </div>
-                    <div>
-                        <label htmlFor='inPassword'>Password</label>
-                        <input id='inPassword' type='password' name='password' onChange={handleChange} required/>
+                    <div className={`${block}__input-container`}>
+                        <label htmlFor='inPassword' className={`${block}__input-container__label`}>Password</label>
+                        <input id='inPassword' type='password' name='password' onChange={handleChange} required className={`${block}__input-container__input`}/>
                     </div>
-                    <div>
-                        <label htmlFor='in2ndPassword'>Confirm password</label>
-                        <input id='in2ndPassword' type='password' name='confirmpassword' onChange={handleChange} required/>
+                    <div className={`${block}__input-container`}>
+                        <label htmlFor='in2ndPassword' className={`${block}__input-container__label`}>Confirm password</label>
+                        <input id='in2ndPassword' type='password' name='confirmpassword' onChange={handleChange} required className={`${block}__input-container__input`}/>
                     </div>
                     <button className={`${block}__button`}>Next</button>
                 </form>
 
                 <form onSubmit={(e)=>changeTab(e, 1)} action='POST' className={currentTab === 1 ? `${block}__signup-tab ${block}__signup-tab--show` : `${block}__signup-tab`}>
-                    <div>
-                        <label htmlFor='inID'>ID</label>
-                        <input id='inID' type='text' name='idUser' onChange={handleChange} pattern='[0-9]' required/>
+                    <div className={`${block}__input-container`}>
+                        <label htmlFor='inID' className={`${block}__input-container__label`}>ID</label>
+                        <input id='inID' type='text' name='idUser' onChange={handleChange} pattern='[0-9]' required className={`${block}__input-container__input`}/>
                     </div>
-                    <div>
-                        <label htmlFor='inName'>Name</label>
-                        <input id='inName' type='text' name='name' onChange={handleChange} required/>
+                    <div className={`${block}__input-container`}>
+                        <label htmlFor='inName' className={`${block}__input-container__label`}>Name</label>
+                        <input id='inName' type='text' name='name' onChange={handleChange} required className={`${block}__input-container__input`}/>
                     </div>
-                    <div>
-                        <label htmlFor='inLastName'>Last name</label>
-                        <input id='inLastName' type='text' name='lastname' onChange={handleChange} required/>
+                    <div className={`${block}__input-container`}>
+                        <label htmlFor='inLastName' className={`${block}__input-container__label`}>Last name</label>
+                        <input id='inLastName' type='text' name='lastname' onChange={handleChange} required className={`${block}__input-container__input`}/>
                     </div>
-                    <div>
-                        <label htmlFor='inIS'>Select your income source: </label>
+                    <div className={`${block}__input-container`}>
+                        <label htmlFor='inIS' className={`${block}__input-container__label`}>Select your income source: </label>
                         <select name='incomeSource' id='inIS'>
                             <option value='Employed'>Employed / Salaried</option>
                             <option value='Business Owner'>Business Owner</option>
@@ -100,7 +100,10 @@ function SignUp(){
                             <option value='Other'>Other</option>
                         </select>
                     </div>
-                    <button className={`${block}__button`}>Submit</button>
+                    <div className={`${block}__button-container`}>
+                        <button onClick={(e)=>changeTab(e, -1)} className={`${block}__button`}>Previous</button>
+                        <button className={`${block}__button`}>Submit</button>
+                    </div>
                 </form>
             </div>
         </div>

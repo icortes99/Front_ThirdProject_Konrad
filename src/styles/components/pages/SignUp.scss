@@ -11,6 +11,104 @@
 
     &__signup{
         background-color: white;
-        padding: 2rem;
+        box-shadow: 1rem;
+        max-width: 50rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 1.3rem;
+        border-radius: 1rem;
+        -webkit-box-shadow: 5px 5px 18px 5px rgba(0, 0, 0, 0.8);
+        box-shadow: 5px 5px 18px 5px rgba(0, 0, 0, 0.10);
+        width: 80%; padding: 2rem;
+
+        &__steps-container{
+            display: flex;
+            width: 100%;
+            justify-content: center;
+        }
+    }
+
+    &__step{
+        &__container{
+            padding: 0rem 1rem;
+        }
+
+        &__title{
+            margin: 0;
+        }
+
+        &__span{
+            margin-top: 0.5rem;            
+            border-bottom: 0.2rem solid rgba(0, 0, 0, 0.508);
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            height: 0.2rem;
+            width: 10rem;
+        }
+    }
+
+    &__signup-tab{
+        padding: 1rem;
+        display: none;
+        visibility: hidden;
+        transition-duration: 900ms;
+        transition-property: all;
+        transform: translateY(-5rem);
+    
+        &--show {
+            display: block;
+            visibility: visible;
+            transition-property: all;
+            transition-duration: 900ms;
+            transform: translateY(0);
+        }
+    }
+
+    &__input-container{
+        display: flex;
+        width: 100%;
+
+        &__label{
+            margin-top: 1rem;
+            margin-bottom: .5rem;
+            width: 40%;
+            padding-right: 2rem;
+            text-align: right;
+        }
+
+        &__input{
+            border: 0;
+            border-bottom: 0.1rem solid;
+            font-size: 1rem;
+            outline: none;
+            width: 60%;
+            padding: 0;
+        }
+    }
+
+    &__button-container{
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    &__button{
+        margin-top: 1.9rem;
+        border: 0;
+        background: $var-green;
+        cursor: pointer;
+        width: 7rem;
+        padding: 1rem 0.5rem;
+        border-radius: 1rem;
+        box-shadow: inset 0 0 0 0 black;
+        transition: ease-out 300ms;
+        font-size: 1rem;
+    
+        &:hover {
+            box-shadow: inset 7rem 0 0 0 black;
+            color: white;
+        }
     }
 }

@@ -1,0 +1,17 @@
+.dashboard{
+    &__viewport{
+        margin-left: 26rem;
+        padding-right: 3rem;
+
+        &__profile-container{
+            display: flex;
+            width: 100%;
+            justify-content: flex-end;
+            margin-top: 1.5rem;
+        }
+
+        &__accounts-container{
+            padding: 1.5rem 0rem 1rem 2rem;
+        }
+    }
+}

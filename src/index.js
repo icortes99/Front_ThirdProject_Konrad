@@ -10,6 +10,7 @@ import Profile from './components/pages/Profile'
 import Services from './components/pages/Services'
 import SignUp from './components/pages/SignUp'
 import Transfer from './components/pages/Transfer'
+import './styles/index.scss'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 

@@ -1,0 +1,58 @@
+.accordion{
+    &__root{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 26rem;
+        height: 51rem;
+        background-color: black;
+    }
+
+    &__item{
+        padding: 1rem 2rem;
+        border-bottom: 0.3rem solid rgba(238, 238, 238, 0.162);
+
+        &__title{
+            text-decoration: none;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            
+            & h2{
+                margin: 0;
+                font-size: 1.25rem;
+            }
+        }
+
+        &__description{
+            color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 750ms cubic-bezier(0, 1, 0, 1);
+            font-size: 1rem;
+            margin-top: 0.4rem;
+
+            &--show{
+                height: auto;
+                max-height: 999rem;
+                //margin-top: 0.6rem;
+                transition: all 950ms cubic-bezier(1, 0, 1, 0);
+            }
+        }
+
+        &__container{
+            display: flex;
+            align-items: center;
+        }
+
+        &__image{
+            background-color: white;
+            padding: 0.5rem;
+            margin-right: 1.3rem;
+            border-radius: 40%;
+            height: 1.5rem;
+            width: 1.5rem;
+        }
+    }
+}
