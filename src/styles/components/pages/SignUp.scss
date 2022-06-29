@@ -1,0 +1,16 @@
+@import '../../variables/Colors.scss';
+
+.signup{
+    &__root{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 49rem;
+        background: linear-gradient($var-green, #000000);        
+    }
+
+    &__signup{
+        background-color: white;
+        padding: 2rem;
+    }
+}
