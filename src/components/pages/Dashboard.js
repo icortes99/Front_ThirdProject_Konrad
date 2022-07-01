@@ -1,6 +1,7 @@
 import '../../styles/components/pages/Dashboard.scss'
 import Accordion from '../subcomponents/Accordion'
 import Account from '../subcomponents/Account'
+import Footer from '../subcomponents/Footer'
 
 function Dashboard(){
     const block = 'dashboard'
@@ -44,6 +45,9 @@ function Dashboard(){
                         })
                     }
                 </div>
+            </div>
+            <div className={`${block}__footer-container`}>
+                <Footer/>
             </div>
         </div>
     )

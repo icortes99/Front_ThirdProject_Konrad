@@ -1,17 +1,32 @@
 .dashboard{
+    &__root{
+        //width: 100%;
+        //display: flex;
+        //align-items: center;
+        //justify-content: center;
+        background-color: rgb(228, 228, 228);
+    }
     &__viewport{
-        margin-left: 26rem;
-        padding-right: 3rem;
+        min-height: 51rem;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
         &__profile-container{
             display: flex;
             width: 100%;
             justify-content: flex-end;
-            margin-top: 1.5rem;
+            padding-top: 1.5rem;
         }
 
         &__accounts-container{
             padding: 1.5rem 0rem 1rem 2rem;
         }
+    }
+
+    &__footer-container{
+        margin-left: 26rem;
+        width: calc(100% - 26rem);
     }
 }
