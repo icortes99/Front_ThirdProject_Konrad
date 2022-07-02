@@ -1,0 +1,80 @@
+@import '../../variables/Colors.scss';
+
+.card1{
+    &__root{
+        background-color: rgba($color: #000000, $alpha: 0.2);
+        box-shadow: 0 .3rem .5rem rgba($color: black, $alpha: 0.4);
+        backdrop-filter: blur(1rem);
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 15rem;
+        padding: 1.5rem 2rem;
+        height: 18rem;
+        border-radius: .4rem;
+        position: relative;
+        margin: 2rem 1.5rem;
+    }
+
+    &__card{
+        width: 100%;
+
+        &__primarily{
+            transition: 500ms ease-in-out;
+        }
+
+        &__image{
+            width: 15rem;
+            transition: 500ms ease-in-out;
+        }
+
+        &__title{
+            margin: 0;
+            text-align: center;
+        }
+
+        &__description{
+            width: 15rem;
+            font-size: 1rem;
+        }
+
+        &__button{
+            background-color: $var-green;
+            border: 0;
+            padding: .5rem 1rem;
+            border-radius: .5rem;
+            font-size: 1rem;
+            justify-self: center;
+            cursor: pointer;
+        }
+
+        &__secondary{
+            position: absolute;
+            top: 50%;
+            transition: 500ms ease-in-out;
+            opacity: 0;
+            visibility: hidden;
+            text-align: center;
+            
+        }
+
+        &:hover .card1__root{
+            height: 22rem;
+        }
+
+        &:hover .card1__card__secondary {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(1rem);
+        }
+
+        &:hover .card1__card__primarily{
+            transform: translateY(-2.5rem);
+
+            .card1__card__image{
+                transform: translate(-.1rem, -.9rem) rotate(-4deg) scale(1.1);
+            }
+        }
+    }
+}

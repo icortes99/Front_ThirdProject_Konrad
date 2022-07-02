@@ -1,0 +1,23 @@
+.home{
+    &__hero{
+        width: 100%;
+        display: flex;
+        background-image: url('../../../assets/backgrounds/background6.jpg');
+        height: 20rem;
+        background-size: cover;
+
+        &__logo-container{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba($color: #000000, $alpha: 0.4);
+            backdrop-filter: blur(.2rem);
+        }
+
+        &__logo{
+            width: 15rem;
+        }
+    }
+}

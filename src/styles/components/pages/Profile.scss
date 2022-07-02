@@ -1,0 +1,54 @@
+@import '../../variables/Colors.scss';
+
+.profile{
+    &__image-section{
+        padding: 2rem;
+        position: relative;
+
+        &__img{
+            width: 25rem;
+            height: 25rem;
+            border-radius: 10rem;
+        }
+
+        &__edit-btn{
+            position: absolute;
+            bottom: 0;
+            border: 0;
+            cursor: pointer;
+            background: rgba($color: #000000, $alpha: 0);
+            border-radius: 2rem;
+            padding: .5rem .1rem .2rem .6rem;
+
+            &:hover{
+                background-color: $var-green;
+            }
+        }
+
+        &__edit{
+            width: 5rem;
+        }
+    }
+
+    &__description-section{
+        //
+    }
+
+    &__show {
+        //
+    }
+
+    &__show--hidden {
+        visibility: hidden;
+        display: none;
+    }
+
+    &__edit {
+        //
+    }
+
+    &__edit--hidden {
+        visibility: hidden;
+        display: none;
+    }
+}
