@@ -8,7 +8,7 @@ function Card(props){
     <div className={`${block}__root`}>
         <div className={`${block}__card`}>
             <div className={`${block}__card__primarily`}>
-                <img src={obj.img} className={`${block}__card__image`}/>
+                <img src={obj.img} className={`${block}__card__image`} alt='image card'/>
                 <h2 className={`${block}__card__title`}>{obj.title}</h2>
             </div>
             <div className={`${block}__card__secondary`}>

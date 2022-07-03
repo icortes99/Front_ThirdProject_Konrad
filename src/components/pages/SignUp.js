@@ -35,7 +35,15 @@ function SignUp(){
             if(currentTab === 0){
                 setCurrentTab(currentTab + x)
             } else {
-                setCurrentTab(currentTab + x)
+                //setCurrentTab(currentTab + x)
+                console.log('obj: ' + JSON.stringify(userObject))
+                fetch('http://localhost:8080/users/signup',{
+                    method: 'POST',
+                    body: JSON.stringify(userObject),
+                    headers: {"Content-type": "application/json; charset=UTF-8"}
+                }).then(response => response.json())
+                .then(data => console.log('response: ' + JSON.stringify(data)))
+                .catch(err => console.log('Error when sign up: ' + err))
             }
         }
     }
