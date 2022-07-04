@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { createContext, useState } from 'react'
 import ReactDOM from 'react-dom/client'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Home from './components/pages/Home'
@@ -10,22 +10,30 @@ import Profile from './components/pages/Profile'
 import Services from './components/pages/Services'
 import SignUp from './components/pages/SignUp'
 import Transfer from './components/pages/Transfer'
+import UserContext, {emptyUser} from './components/subcomponents/UserContext'
 import './styles/index.scss'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
+const InitializeUser = ()=>{
+  const [userI, setUserI] = useState('emptyUser')
+  return(userI)
+}
+
 root.render(
-  <BrowserRouter>
-    <Routes>
-      <Route path={'/'} exact element={<Home/>}/>
-      <Route path={'/signup'} exact element={<SignUp />}/>
-      <Route path={'/login'} exact element={<LogIn />}/>
-      <Route path={'/dashboard'} exact element={<Dashboard />}/>
-      <Route path={'/profile'} exact element={<Profile />}/>
-      <Route path={'/addmoney'} exact element={<AddMoney />}/>
-      <Route path={'/transfer'} exact element={<Transfer />}/>
-      <Route path={'/services'} exact element={<Services />}/>
-      <Route path={'/history'} exact element={<History />}/>
-    </Routes>
-  </BrowserRouter>
+  <UserContext.Provider value={InitializeUser}>
+    <BrowserRouter>
+      <Routes>
+        <Route path={'/'} exact element={<Home/>}/>
+        <Route path={'/signup'} exact element={<SignUp />}/>
+        <Route path={'/login'} exact element={<LogIn />}/>
+        <Route path={'/dashboard'} exact element={<Dashboard />}/>
+        <Route path={'/profile'} exact element={<Profile />}/>
+        <Route path={'/addmoney'} exact element={<AddMoney />}/>
+        <Route path={'/transfer'} exact element={<Transfer />}/>
+        <Route path={'/services'} exact element={<Services />}/>
+        <Route path={'/history'} exact element={<History />}/>
+      </Routes>
+    </BrowserRouter>
+  </UserContext.Provider>
 )

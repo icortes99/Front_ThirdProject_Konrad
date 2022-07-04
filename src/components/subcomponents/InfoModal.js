@@ -4,7 +4,7 @@ import successIcon from '../../assets/success.png'
 import '../../styles/components/subcomponents/InfoModal.scss'
 
 function InfoModal(props){
-    const {visible=true, setVisible, toggle=1, msg, time} = props
+    const {visible, setVisible, toggle=1, msg, time} = props
     const block = 'infoModal'
 
     useEffect(()=>{

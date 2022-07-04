@@ -37,7 +37,7 @@ function SignUp(){
             } else {
                 //setCurrentTab(currentTab + x)
                 console.log('obj: ' + JSON.stringify(userObject))
-                fetch('http://localhost:8080/users/signup',{
+                fetch('https://api-third-project.herokuapp.com/users/signup',{
                     method: 'POST',
                     body: JSON.stringify(userObject),
                     headers: {"Content-type": "application/json; charset=UTF-8"}

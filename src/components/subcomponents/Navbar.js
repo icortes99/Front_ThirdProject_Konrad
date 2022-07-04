@@ -21,6 +21,14 @@ function Navbar(props){
                 </ul>
             </div>
 
+            <div className={page === 2 ? `${block}__dropdown-container` : `${block}__dropdown-container--hide`}>
+                <a className={`${block}__signup-link`} href='/signup'>Sign up</a>
+            </div>
+
+            <div className={page === 3 ? `${block}__dropdown-container` : `${block}__dropdown-container--hide`}>
+                <a className={`${block}__signup-link`} href='/login'>Log in</a>
+            </div>
+
             <div className={ page === 1 ? `${block}__home-buttons` : `${block}__home-buttons--hide`}>
                 <a className={`${block}__home-buttons__link`} href='/login'>Log in</a>
                 <a className={`${block}__home-buttons__link`} href='/signup'>Sign up</a>
