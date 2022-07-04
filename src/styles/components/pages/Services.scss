@@ -1,0 +1,52 @@
+@import '../../variables/Colors.scss';
+@import '../../mixins/button.scss';
+
+.services {
+    &__root {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 9.35rem;
+        //height: 40rem;
+
+        &__section {
+            width: calc(30rem - 8rem);
+            display: flex;
+            flex-direction: column;
+            padding: 0rem 4rem;
+            margin-bottom: 2rem;
+        }
+    }
+
+    &__form {
+        &__label {
+            //width: 17rem;
+        }
+
+        &__input {
+            width: 21rem;
+            border: 0;
+            border-bottom: .1rem solid;
+            outline: none;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+    }
+
+    &__btn-pay {
+        @include button-style;
+        align-self: center;
+
+        &:hover{
+            @include button-hover;
+        }
+    }
+
+    &__destiny-user {
+        margin: 0;
+        padding: 0;
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+}

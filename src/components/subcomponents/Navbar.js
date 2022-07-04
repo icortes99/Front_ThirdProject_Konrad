@@ -7,6 +7,12 @@ function Navbar(props){
     const block = 'navbar'
     const {page = 0} = props //int value
     const [dropView, setDropView] = useState(false)
+
+    const signout = ()=>{
+        //clean context
+        //redirect to home page
+    }
+
     return(
         <nav className={`${block}__root`}>
             <a className={`${block}__logo-container`} href='/'>
@@ -27,6 +33,10 @@ function Navbar(props){
 
             <div className={page === 3 ? `${block}__dropdown-container` : `${block}__dropdown-container--hide`}>
                 <a className={`${block}__signup-link`} href='/login'>Log in</a>
+            </div>
+
+            <div className={page === 4 ? `${block}__dropdown-container` : `${block}__dropdown-container--hide`}>
+                <button onClick={signout} className={`${block}__signup-button`}>Sign out</button>
             </div>
 
             <div className={ page === 1 ? `${block}__home-buttons` : `${block}__home-buttons--hide`}>

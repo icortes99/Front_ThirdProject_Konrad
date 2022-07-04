@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import '../../styles/components/pages/SignUp.scss'
+import Navbar from '../subcomponents/Navbar'
+import Footer from '../subcomponents/Footer'
 
 function SignUp(){
     const [userObject, setUserObject] = useState({
@@ -13,6 +15,7 @@ function SignUp(){
     })
     const block = 'signup'
     const [currentTab, setCurrentTab] = useState(0)
+    const [loadImg, setLoadImg] = useState(false)
 
     function handleChange(e){
         e.preventDefault()
@@ -32,89 +35,135 @@ function SignUp(){
         //validation
 
         if(approved && (x !== 0)){
-            if(currentTab === 0){
+            if(currentTab !== 2 && x > 0){
                 setCurrentTab(currentTab + x)
             } else {
                 //setCurrentTab(currentTab + x)
-                console.log('obj: ' + JSON.stringify(userObject))
-                fetch('https://api-third-project.herokuapp.com/users/signup',{
+                //console.log('obj: ' + JSON.stringify(userObject))
+                /*fetch('https://api-third-project.herokuapp.com/users/signup',{
                     method: 'POST',
                     body: JSON.stringify(userObject),
                     headers: {"Content-type": "application/json; charset=UTF-8"}
                 }).then(response => response.json())
                 .then(data => console.log('response: ' + JSON.stringify(data)))
-                .catch(err => console.log('Error when sign up: ' + err))
+                .catch(err => console.log('Error when sign up: ' + err))*/
             }
         }
     }
 
+    const UpdateImg = (e)=>{
+        setLoadImg(true)
+
+        console.log(e.target.files[0])
+        const imgData = new FormData()
+        imgData.append('file', e.target.files[0])
+        imgData.append('upload_preset', 'unsigned')
+
+        fetch('https://api.cloudinary.com/v1_1/dhe2iy0sa/image/upload', {
+            method: 'POST',
+            body: imgData
+        }).then(response=>response.json())
+        .then(res=>{setUserObject({
+                ...userObject,
+                photo: res.secure_url
+            })
+            setLoadImg(false)
+        })
+        .catch(err=>console.log('Error: ' + err))
+    }
+
     return(
-        <div className={`${block}__root`}>
-            <div className={`${block}__signup`}>
-                <div className={`${block}__signup__title-container`}>
-                    <h1>Sign up</h1>
-                    <p>We need more information to create a new user, 
-                     you can ask to our <a href='' target='_blank'>Help center</a></p>
+        <>
+            <Navbar
+            page={3}/>
+            <main>
+                <div className={`${block}__root`}>
+                    <div className={`${block}__signup`}>
+                        <div className={`${block}__signup__title-container`}>
+                            <h1>Sign up</h1>
+                            <p>We need more information to create a new user, 
+                            you can ask to our <a href='https://www.forbes.com/advisor/banking/how-to-protect-your-online-banking-information/' target='_blank'>Help center</a></p>
+                        </div>
+
+                        <div className={`${block}__signup__steps-container`}>
+                            <div className={currentTab === 0 ? `${block}__step__container ${block}__step__container--focus` : `${block}__step__container`}>
+                                <p>1</p>
+                            </div>
+                            <div className={currentTab === 1 ? `${block}__step__container ${block}__step__container--focus` : `${block}__step__container`}>
+                                <p>2</p>
+                            </div>
+                            <div className={currentTab === 2 ? `${block}__step__container ${block}__step__container--focus` : `${block}__step__container`}>
+                                <p>3</p>
+                            </div>
+                        </div>
+
+                        <form onSubmit={(e)=>changeTab(e, 1)} action='POST' className={currentTab === 0 ? `${block}__signup-tab ${block}__signup-tab--show` : `${block}__signup-tab`}>
+                            <div className={`${block}__input-container`}>
+                                <label htmlFor='inEmail' className={`${block}__input-container__label`}>Email</label>
+                                <input id='inEmail' type='text' name='email' onChange={handleChange} pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$' required className={`${block}__input-container__input`}/>
+                            </div>
+                            <div className={`${block}__input-container`}>
+                                <label htmlFor='inPassword' className={`${block}__input-container__label`}>Password</label>
+                                <input id='inPassword' type='password' name='password' onChange={handleChange} required className={`${block}__input-container__input`}/>
+                            </div>
+                            <div className={`${block}__input-container`}>
+                                <label htmlFor='in2ndPassword' className={`${block}__input-container__label`}>Confirm password</label>
+                                <input id='in2ndPassword' type='password' name='confirmpassword' onChange={handleChange} required className={`${block}__input-container__input`}/>
+                            </div>
+                            <button className={`${block}__button`}>Next</button>
+                        </form>
+
+                        <form onSubmit={(e)=>changeTab(e, 1)} action='POST' className={currentTab === 1 ? `${block}__signup-tab ${block}__signup-tab--show` : `${block}__signup-tab`}>
+                            <div className={`${block}__input-container`}>
+                                <label htmlFor='inID' className={`${block}__input-container__label`}>ID</label>
+                                <input id='inID' type='text' name='idUser' onChange={handleChange} pattern='[0-9],{8}$' required className={`${block}__input-container__input`}/>
+                            </div>
+                            <div className={`${block}__input-container`}>
+                                <label htmlFor='inName' className={`${block}__input-container__label`}>Name</label>
+                                <input id='inName' type='text' name='name' onChange={handleChange} required className={`${block}__input-container__input`}/>
+                            </div>
+                            <div className={`${block}__input-container`}>
+                                <label htmlFor='inLastName' className={`${block}__input-container__label`}>Last name</label>
+                                <input id='inLastName' type='text' name='lastname' onChange={handleChange} required className={`${block}__input-container__input`}/>
+                            </div>
+                            
+                            <div className={`${block}__button-container`}>
+                                <button onClick={()=>setCurrentTab(-1)} className={`${block}__button`}>Previous</button>
+                                <button className={`${block}__button`}>Next</button>
+                            </div>
+                        </form>
+
+
+                        <form onSubmit={(e)=>changeTab(e, 1)} action='POST' className={currentTab === 2 ? `${block}__signup-tab ${block}__signup-tab--show` : `${block}__signup-tab`}>
+                            <div className={`${block}__profile__container`}>
+                                <div className={`${block}__profile__image-container`}>
+                                    <img className={loadImg ? `${block}__profile__photo ${block}__profile__photo--loading`: `${block}__profile__photo`} src={userObject.photo} alt='profile image'/>
+                                </div>
+                                <label className={`${block}__label-hidden`} htmlFor='inImage'>Add profile image</label>
+                                <input id='inImage' className={`${block}__profile__button`} type='file' onChange={(e)=>{UpdateImg(e)}}/>
+                            </div>
+                            <div className={`${block}__input-container`}>
+                                <label htmlFor='inIS' className={`${block}__input-container__label`}>Income source: </label>
+                                <select name='incomeSource' id='inIS'>
+                                    <option value='Employed'>Employed / Salaried</option>
+                                    <option value='Business Owner'>Business Owner</option>
+                                    <option value='Self-Employed'>Self-Employed</option>
+                                    <option value='Retired'>Retired</option>
+                                    <option value='Investor'>Investor</option>
+                                    <option value='Other'>Other</option>
+                                </select>
+                            </div>
+
+                            <div className={`${block}__button-container`}>
+                                <button onClick={()=>setCurrentTab(0)} className={`${block}__button`}>Previous</button>
+                                <button type='submit' className={`${block}__button`}>Submit</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-
-                <div className={`${block}__signup__steps-container`}>
-                    <div className={`${block}__step__container`}>
-                        <h2 className={`${block}__step__title`}>Account information</h2>
-                        <div className={`${block}__step__span`}></div>
-                    </div>
-                    <div className={`${block}__step__container`}>
-                        <h2 className={`${block}__step__title`}>Personal information</h2>
-                        <div className={`${block}__step__span`}></div>
-                    </div>
-                </div>
-
-                <form onSubmit={(e)=>changeTab(e, 1)} action='POST' className={currentTab === 0 ? `${block}__signup-tab ${block}__signup-tab--show` : `${block}__signup-tab`}>
-                    <div className={`${block}__input-container`}>
-                        <label htmlFor='inEmail' className={`${block}__input-container__label`}>Email</label>
-                        <input id='inEmail' type='text' name='email' onChange={handleChange} pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$' required className={`${block}__input-container__input`}/>
-                    </div>
-                    <div className={`${block}__input-container`}>
-                        <label htmlFor='inPassword' className={`${block}__input-container__label`}>Password</label>
-                        <input id='inPassword' type='password' name='password' onChange={handleChange} required className={`${block}__input-container__input`}/>
-                    </div>
-                    <div className={`${block}__input-container`}>
-                        <label htmlFor='in2ndPassword' className={`${block}__input-container__label`}>Confirm password</label>
-                        <input id='in2ndPassword' type='password' name='confirmpassword' onChange={handleChange} required className={`${block}__input-container__input`}/>
-                    </div>
-                    <button className={`${block}__button`}>Next</button>
-                </form>
-
-                <form onSubmit={(e)=>changeTab(e, 1)} action='POST' className={currentTab === 1 ? `${block}__signup-tab ${block}__signup-tab--show` : `${block}__signup-tab`}>
-                    <div className={`${block}__input-container`}>
-                        <label htmlFor='inID' className={`${block}__input-container__label`}>ID</label>
-                        <input id='inID' type='text' name='idUser' onChange={handleChange} pattern='[0-9]' required className={`${block}__input-container__input`}/>
-                    </div>
-                    <div className={`${block}__input-container`}>
-                        <label htmlFor='inName' className={`${block}__input-container__label`}>Name</label>
-                        <input id='inName' type='text' name='name' onChange={handleChange} required className={`${block}__input-container__input`}/>
-                    </div>
-                    <div className={`${block}__input-container`}>
-                        <label htmlFor='inLastName' className={`${block}__input-container__label`}>Last name</label>
-                        <input id='inLastName' type='text' name='lastname' onChange={handleChange} required className={`${block}__input-container__input`}/>
-                    </div>
-                    <div className={`${block}__input-container`}>
-                        <label htmlFor='inIS' className={`${block}__input-container__label`}>Select your income source: </label>
-                        <select name='incomeSource' id='inIS'>
-                            <option value='Employed'>Employed / Salaried</option>
-                            <option value='Business Owner'>Business Owner</option>
-                            <option value='Self-Employed'>Self-Employed</option>
-                            <option value='Retired'>Retired</option>
-                            <option value='Investor'>Investor</option>
-                            <option value='Other'>Other</option>
-                        </select>
-                    </div>
-                    <div className={`${block}__button-container`}>
-                        <button onClick={(e)=>changeTab(e, -1)} className={`${block}__button`}>Previous</button>
-                        <button className={`${block}__button`}>Submit</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+            </main>
+            <Footer/>
+        </>
     )
 }
 

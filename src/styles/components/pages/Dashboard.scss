@@ -4,6 +4,7 @@
         //display: flex;
         //align-items: center;
         //justify-content: center;
+        margin-top: 9.35rem;
         background-color: rgb(228, 228, 228);
     }
     &__viewport{
@@ -23,10 +24,5 @@
         &__accounts-container{
             padding: 1.5rem 0rem 1rem 2rem;
         }
-    }
-
-    &__footer-container{
-        margin-left: 26rem;
-        width: calc(100% - 26rem);
     }
 }

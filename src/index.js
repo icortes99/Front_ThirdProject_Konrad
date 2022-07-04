@@ -10,18 +10,13 @@ import Profile from './components/pages/Profile'
 import Services from './components/pages/Services'
 import SignUp from './components/pages/SignUp'
 import Transfer from './components/pages/Transfer'
-import UserContext, {emptyUser} from './components/subcomponents/UserContext'
+import { InfoProvider} from './components/subcomponents/UserContext'
 import './styles/index.scss'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
-const InitializeUser = ()=>{
-  const [userI, setUserI] = useState('emptyUser')
-  return(userI)
-}
-
 root.render(
-  <UserContext.Provider value={InitializeUser}>
+  <InfoProvider>
     <BrowserRouter>
       <Routes>
         <Route path={'/'} exact element={<Home/>}/>
@@ -35,5 +30,5 @@ root.render(
         <Route path={'/history'} exact element={<History />}/>
       </Routes>
     </BrowserRouter>
-  </UserContext.Provider>
+  </InfoProvider>
 )

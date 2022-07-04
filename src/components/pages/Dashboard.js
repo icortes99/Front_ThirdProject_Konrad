@@ -2,6 +2,7 @@ import '../../styles/components/pages/Dashboard.scss'
 import Accordion from '../subcomponents/Accordion'
 import Account from '../subcomponents/Account'
 import Footer from '../subcomponents/Footer'
+import Navbar from '../subcomponents/Navbar'
 
 function Dashboard(){
     const block = 'dashboard'
@@ -28,28 +29,27 @@ function Dashboard(){
     }]
 
     return(
-        <div className={`${block}__root`}>
-            <Accordion/>
-            <div className={`${block}__viewport`}>
-                <div className={`${block}__viewport__profile-container`}>
-                    Profile
+        <>
+            <Navbar
+            page={4}/>
+            <div className={`${block}__root`}>
+                <Accordion/>
+                <div className={`${block}__viewport`}>
+                    <div className={`${block}__viewport__accounts-container`}>
+                        {
+                            accountsHardCoded.map((x, i)=>{
+                                return(
+                                    <Account
+                                    account={x}
+                                    key={i}/>
+                                )
+                            })
+                        }
+                    </div>
                 </div>
-                <div className={`${block}__viewport__accounts-container`}>
-                    {
-                        accountsHardCoded.map((x, i)=>{
-                            return(
-                                <Account
-                                account={x}
-                                key={i}/>
-                            )
-                        })
-                    }
-                </div>
-            </div>
-            <div className={`${block}__footer-container`}>
                 <Footer/>
             </div>
-        </div>
+        </>
     )
 }
 
