@@ -1,14 +1,11 @@
 import { useContext, useState } from 'react'
 import Navbar from '../subcomponents/Navbar'
 import InfoModal from '../subcomponents/InfoModal'
-import logo from '../../assets/logo.png'
 import loginLogo from '../../assets/login.png'
 import '../../styles/components/pages/LogIn.scss'
 import Footer from '../subcomponents/Footer'
-import UserContext from '../subcomponents/UserContext'
 
 function LogIn(){
-    //const userContext = useContext(UserContext)
     const block = 'login'
     const [loginInfo, setLoginInfo] = useState({
         idUser: '',
@@ -24,25 +21,24 @@ function LogIn(){
         })
     }
 
-    const loginAction = (e)=>{
+    const loginAction = async(e)=>{
         e.preventDefault()
-        //console.log('context: ' + JSON.stringify(loginInfo))
         fetch('https://api-third-project.herokuapp.com/users/login', {
             method: 'POST',
             body: JSON.stringify(loginInfo),
             headers: {"Content-type": "application/json; charset=UTF-8"}
         }).then(response => response.json())
-        .then(data => {
-            console.log(data)
+        .then(async(data) => {
             if(data !== 'User does not exist' && data !== 'Wrong password'){
-               window.location.href = '/dashboard'
+                //await updateContext(data, loginInfo.idUser)
+                //await console.log('User context: ' + JSON.stringify(userContext[0]))
+                sessionStorage.setItem('token', data)
+                window.location.href = '/dashboard'
             } else {
                 setModalVisible(true)
             }
         })
         .catch(err => setModalVisible(true))
-
-        console.log('all good')
     }
 
     return(

@@ -9,8 +9,9 @@ function Navbar(props){
     const [dropView, setDropView] = useState(false)
 
     const signout = ()=>{
-        //clean context
-        //redirect to home page
+        sessionStorage.removeItem('token')
+        sessionStorage.clear()
+        window.location.href = '/'
     }
 
     return(

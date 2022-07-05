@@ -35,6 +35,7 @@ function AddMoney(){
         "accountBalance": 250.44,
         "userIdUser": 14783926
     }]
+    const userLoggedIn = sessionStorage.getItem('token')
 
     const verify = ()=>{
         console.log('verifying')
@@ -44,42 +45,45 @@ function AddMoney(){
     }
 
     return(
-        <div className={`${block}__root`}>
-            <div className={`${block}__main`}>
-                <h1>Add money</h1>
-                <section>
-                    <h2>Origin</h2>
-                    <form>
-                        <div>
-                            <label htmlFor='originAccN'>Account number: </label>
-                            <input id='originAccN' type='number'/>
-                        </div>
+        <>{
+            userLoggedIn !== null ?
+            <div className={`${block}__root`}>
+                <div className={`${block}__main`}>
+                    <h1>Add money</h1>
+                    <section>
+                        <h2>Origin</h2>
+                        <form>
+                            <div>
+                                <label htmlFor='originAccN'>Account number: </label>
+                                <input id='originAccN' type='number'/>
+                            </div>
 
-                        <div>
-                            <label htmlFor='originAmount'>Amount: </label>
-                            <input id='originAmount'/>
-                        </div>
-                    </form>
-                </section>
-                <section>
-                    <h2>Destiny</h2>
-                    <form>
-                        <label htmlFor='destinyAccN'>Destiny account: </label>
-                        <select name='incomeSource' id='destinyAccN'>
-                            {
-                                hardCodedListAccounts.map((x, i)=>{
-                                    return(
-                                        <option value={x.accountNumber} key={i}>{x.accountNumber}</option>
-                                    )
-                                })
-                            }
-                        </select>
-                    </form>
-                    <button onClick={verify}>Transfer</button>
-                </section>
-            </div>
-            <Footer/>
-        </div>
+                            <div>
+                                <label htmlFor='originAmount'>Amount: </label>
+                                <input id='originAmount'/>
+                            </div>
+                        </form>
+                    </section>
+                    <section>
+                        <h2>Destiny</h2>
+                        <form>
+                            <label htmlFor='destinyAccN'>Destiny account: </label>
+                            <select name='incomeSource' id='destinyAccN'>
+                                {
+                                    hardCodedListAccounts.map((x, i)=>{
+                                        return(
+                                            <option value={x.accountNumber} key={i}>{x.accountNumber}</option>
+                                        )
+                                    })
+                                }
+                            </select>
+                        </form>
+                        <button onClick={verify}>Transfer</button>
+                    </section>
+                </div>
+                <Footer/>
+            </div> : <h1>You have not access to this page</h1>
+        }</>
     )
 }
 

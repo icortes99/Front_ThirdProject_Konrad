@@ -113,6 +113,7 @@ function SignUp(){
                             <button className={`${block}__button`}>Next</button>
                         </form>
 
+
                         <form onSubmit={(e)=>changeTab(e, 1)} action='POST' className={currentTab === 1 ? `${block}__signup-tab ${block}__signup-tab--show` : `${block}__signup-tab`}>
                             <div className={`${block}__input-container`}>
                                 <label htmlFor='inID' className={`${block}__input-container__label`}>ID</label>

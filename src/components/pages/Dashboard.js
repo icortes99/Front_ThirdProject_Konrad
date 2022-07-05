@@ -1,8 +1,10 @@
-import '../../styles/components/pages/Dashboard.scss'
+import { useContext, useEffect, useState } from 'react'
 import Accordion from '../subcomponents/Accordion'
 import Account from '../subcomponents/Account'
 import Footer from '../subcomponents/Footer'
 import Navbar from '../subcomponents/Navbar'
+import UserContext from '../subcomponents/UserContext'
+import '../../styles/components/pages/Dashboard.scss'
 
 function Dashboard(){
     const block = 'dashboard'
@@ -27,12 +29,19 @@ function Dashboard(){
         accountBalance: 2500.44,
         userIdUser: 14783926
     }]
+    const userLoggedIn = sessionStorage.getItem('token')
+
+    useEffect(()=>{
+        //
+    }, [])
 
     return(
         <>
+        {userLoggedIn !== null ?
+            <> 
             <Navbar
             page={4}/>
-            <div className={`${block}__root`}>
+            <main className={`${block}__root`}>
                 <Accordion/>
                 <div className={`${block}__viewport`}>
                     <div className={`${block}__viewport__accounts-container`}>
@@ -47,8 +56,9 @@ function Dashboard(){
                         }
                     </div>
                 </div>
-                <Footer/>
-            </div>
+            </main>
+            <Footer/></>
+            : <h1>You have not access to this page</h1> }
         </>
     )
 }

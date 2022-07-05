@@ -3,6 +3,7 @@ import '../../styles/components/subcomponents/Accordion.scss'
 
 function Accordion(){
     const block = 'accordion'
+    const [visible, setVisivle] = useState(false)
     const featuresList = [{
         page: '/profile',
         name:'Profile', 
@@ -32,28 +33,37 @@ function Accordion(){
     const [hover, setHover] = useState(0)
 
     return(
-        <section className={`${block}__root`}>
-            <button></button>
-            <div>
-                {featuresList.map((x, i)=>{
-                    return(
-                        <div className={`${block}__item`} key={i}>
-                            <a href={x.page} className={`${block}__item__title`} onMouseOver={()=>setHover(`${x.name}`)}>
-                                <div className={`${block}__item__container`}>
-                                    <img src={x.image} alt={`Icon to ${x.name}`} className={`${block}__item__image`}/>
-                                    <h2>{x.name}</h2>
+        <>
+            <input type='checkbox' id='visible'></input>
+            <label htmlFor='visible'>
+                <i className='fas fa-bars' id='btn'></i>
+                <i className='fas fa-times' id='cancel'></i>
+            </label>
+            <section className={`${block}__root`}>
+                <div className={`${block}__accordion`}>
+                    <div className={`${block}__title__container`}>
+                        <h1 className={`${block}__title__title`}>My app</h1>
+                    </div>
+                    {featuresList.map((x, i)=>{
+                        return(
+                            <div className={`${block}__item`} key={i}>
+                                <a href={x.page} className={`${block}__item__title`} onMouseOver={()=>setHover(`${x.name}`)}>
+                                    <div className={`${block}__item__container`}>
+                                        <img src={x.image} alt={`Icon to ${x.name}`} className={`${block}__item__image`}/>
+                                        <h2>{x.name}</h2>
+                                    </div>
+                                
+                                <div className={hover === x.name ? `${block}__item__description ${block}__item__description--show` : `${block}__item__description`}>
+                                    <p>{x.description}</p>
                                 </div>
-                            
-                            <div className={hover === x.name ? `${block}__item__description ${block}__item__description--show` : `${block}__item__description`}>
-                                <p>{x.description}</p>
+                                </a>
                             </div>
-                            </a>
-                        </div>
-                        
-                    )
-                })}
-            </div>
-        </section>
+                            
+                        )
+                    })}
+                </div>
+            </section>
+        </>
     )
 }
 
