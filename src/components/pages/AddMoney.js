@@ -35,7 +35,7 @@ function AddMoney(){
         "accountBalance": 250.44,
         "userIdUser": 14783926
     }]
-    const userLoggedIn = sessionStorage.getItem('token')
+    const userLoggedIn = sessionStorage.getItem('data').token
 
     const verify = ()=>{
         console.log('verifying')

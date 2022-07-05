@@ -16,7 +16,8 @@ function Profile(){
         "exp": 1656773249
     }
     const [mode, setMode] = useState(0)
-    const userLoggedIn = sessionStorage.getItem('token')
+    const userLoggedIn = sessionStorage.getItem('data').token
+    console.log(JSON.parse(sessionStorage.getItem('data')).photo)
 
     const submitForm = (e)=>{
         e.preventDefault()
@@ -28,7 +29,7 @@ function Profile(){
             { userLoggedIn !== null ? <>
                 <div>
                     <section className={`${block}__image-section`}>
-                        <img src={hardCodedUser.photo} alt='profile image' className={`${block}__image-section__img`}/>
+                        <img src={JSON.parse(sessionStorage.getItem('data')).photo} alt='profile image' className={`${block}__image-section__img`}/>
                         <button onClick={()=>setMode(1)} className={`${block}__image-section__edit-btn`}>
                             <img src={editIcon} alt='edit icon' className={`${block}__image-section__edit`}/>
                         </button>

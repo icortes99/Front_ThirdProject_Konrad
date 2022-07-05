@@ -8,7 +8,7 @@ import Footer from '../subcomponents/Footer'
 function LogIn(){
     const block = 'login'
     const [loginInfo, setLoginInfo] = useState({
-        idUser: '',
+        email: '',
         password: ''
     })
     const [modalVisible, setModalVisible] = useState(false)
@@ -20,25 +20,33 @@ function LogIn(){
             [e.target.name]: value
         })
     }
+    const [messageModal, setMessageModal] = useState('')
 
     const loginAction = async(e)=>{
         e.preventDefault()
-        fetch('https://api-third-project.herokuapp.com/users/login', {
-            method: 'POST',
-            body: JSON.stringify(loginInfo),
-            headers: {"Content-type": "application/json; charset=UTF-8"}
-        }).then(response => response.json())
-        .then(async(data) => {
-            if(data !== 'User does not exist' && data !== 'Wrong password'){
-                //await updateContext(data, loginInfo.idUser)
-                //await console.log('User context: ' + JSON.stringify(userContext[0]))
-                sessionStorage.setItem('token', data)
-                window.location.href = '/dashboard'
-            } else {
+        if(loginInfo.email !== '' && loginInfo.password !== ''){
+            fetch('http://localhost:8080/users/login', { //https://api-third-project.herokuapp.com
+                method: 'POST',
+                body: JSON.stringify(loginInfo),
+                headers: {"Content-type": "application/json; charset=UTF-8"}
+            }).then(response => response.json())
+            .then(async(data) => {
+                if(data !== 'User does not exist' && data !== 'Wrong password'){
+                    sessionStorage.setItem('data', JSON.stringify(data))
+                    window.location.href = '/dashboard'
+                } else {
+                    setMessageModal('Wrong information, please try again')
+                    setModalVisible(true)
+                }
+            })
+            .catch(err => {
+                setMessageModal('Wrong information, please try again')
                 setModalVisible(true)
-            }
-        })
-        .catch(err => setModalVisible(true))
+            })
+        } else {
+            setMessageModal('Please fill up all inputs before submit')
+            setModalVisible(true)
+        }
     }
 
     return(
@@ -53,7 +61,7 @@ function LogIn(){
                         <img src={loginLogo} className={`${block}__login-container__image`} alt='login icon'/>
                         <h1 className={`${block}__login-container__title`}>Log in</h1>
                         <form className={`${block}__form`}>
-                            <input type='text' name='idUser' onChange={handleChange} placeholder='Username' className={`${block}__form__input`} required/>
+                            <input type='text' name='email' onChange={handleChange} placeholder='Username' className={`${block}__form__input`} required/>
                             <input type='password' name='password' onChange={handleChange} placeholder='Password' className={`${block}__form__input`} required/>
                             <button onClick={loginAction} type='submit' className={`${block}__form__button`}>Log in</button>
                         </form>
@@ -72,7 +80,7 @@ function LogIn(){
             visible={modalVisible}
             setVisible={setModalVisible}
             toggle={0}
-            msg='Wrong information, please try again'
+            msg={messageModal}
             time={3000}/>
             <Footer/>
         </div>

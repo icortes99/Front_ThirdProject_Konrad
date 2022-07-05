@@ -29,11 +29,7 @@ function Dashboard(){
         accountBalance: 2500.44,
         userIdUser: 14783926
     }]
-    const userLoggedIn = sessionStorage.getItem('token')
-
-    useEffect(()=>{
-        //
-    }, [])
+    const userLoggedIn = sessionStorage.getItem('data').token
 
     return(
         <>
@@ -44,6 +40,9 @@ function Dashboard(){
             <main className={`${block}__root`}>
                 <Accordion/>
                 <div className={`${block}__viewport`}>
+                    <div className={`${block}__viewport__profile`}>
+                        <p>My account: {JSON.parse(sessionStorage.getItem('data')).name}</p>
+                    </div>
                     <div className={`${block}__viewport__accounts-container`}>
                         {
                             accountsHardCoded.map((x, i)=>{

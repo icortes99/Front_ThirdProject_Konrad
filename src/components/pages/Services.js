@@ -4,7 +4,7 @@ import '../../styles/components/pages/Services.scss'
 
 function Services(){
     const block = 'services'
-    const userLoggedIn = sessionStorage.getItem('token')
+    const userLoggedIn = sessionStorage.getItem('data').token
     const hardCodedListAccounts = [{
         "accountNumber": 9999999099999999,
         "currencyCode": 2,

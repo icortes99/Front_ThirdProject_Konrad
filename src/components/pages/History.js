@@ -29,7 +29,7 @@ function History(){
         destinyAccount: 574839205748,
         date: '22/4/22'
     }]
-    const userLoggedIn = sessionStorage.getItem('token')
+    const userLoggedIn = sessionStorage.getItem('data').token
 
     const servicesHardCoded = []
 

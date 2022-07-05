@@ -5,7 +5,7 @@ import Navbar from '../subcomponents/Navbar'
 
 function Transfer(){
     const block = 'transfer'
-    const userLoggedIn = sessionStorage.getItem('token')
+    const userLoggedIn = sessionStorage.getItem('data').token
     const hardCodedListAccounts = [{
         "accountNumber": 9999999099999999,
         "currencyCode": 2,
