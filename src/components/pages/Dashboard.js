@@ -8,28 +8,17 @@ import '../../styles/components/pages/Dashboard.scss'
 
 function Dashboard(){
     const block = 'dashboard'
-    const accountsHardCoded = [{
-        accountNumber: 54276,
-        currency: "Colon",
-        accountBalance: 769000.44,
-        userIdUser: 14783926
-    }, {
-        accountNumber: 324343,
-        currency: "Dollar",
-        accountBalance: 250.44,
-        userIdUser: 14783926 
-    }, {
-        accountNumber: 33355,
-        currency: "Dollar",
-        accountBalance: 2500.44,
-        userIdUser: 14783926
-    }, {
-        accountNumber: 5426543246786543222,
-        currency: "Colon",
-        accountBalance: 2500.44,
-        userIdUser: 14783926
-    }]
-    const userLoggedIn = sessionStorage.getItem('data').token
+    const sessionData = JSON.parse(sessionStorage.getItem('data'))
+    let userLoggedIn = sessionData.token
+    const accountsData = sessionData.accounts
+    let currenciesData = JSON.parse(sessionStorage.getItem('currencies'))
+
+    useEffect(()=>{
+        fetch(`https://api-third-project.herokuapp.com/currencies`)
+        .then(res=>res.json())
+        .then(data=>sessionStorage.setItem('currencies', JSON.stringify(data)))
+        .catch(err=>console.log(err))
+    }, [])
 
     return(
         <>
@@ -45,10 +34,17 @@ function Dashboard(){
                     </div>
                     <div className={`${block}__viewport__accounts-container`}>
                         {
-                            accountsHardCoded.map((x, i)=>{
+                            accountsData.map((x, i)=>{
+                                let actualCurrency
+                                currenciesData.forEach((y)=>{
+                                    if(x.currencyCode === y.idCurrency){
+                                        actualCurrency = y
+                                    }
+                                })
                                 return(
                                     <Account
                                     account={x}
+                                    currency={actualCurrency}
                                     key={i}/>
                                 )
                             })

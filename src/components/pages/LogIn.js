@@ -25,7 +25,7 @@ function LogIn(){
     const loginAction = async(e)=>{
         e.preventDefault()
         if(loginInfo.email !== '' && loginInfo.password !== ''){
-            fetch('http://localhost:8080/users/login', { //https://api-third-project.herokuapp.com
+            fetch('https://api-third-project.herokuapp.com/users/login', { //https://api-third-project.herokuapp.com
                 method: 'POST',
                 body: JSON.stringify(loginInfo),
                 headers: {"Content-type": "application/json; charset=UTF-8"}

@@ -1,7 +1,7 @@
 import '../../styles/components/subcomponents/Account.scss'
 
 function Account(props){
-    const {account} = props
+    const {account, currency} = props
     const block = 'accountCard'
 
     return(
@@ -11,11 +11,11 @@ function Account(props){
             </div>
             <div className={`${block}__container--info`}>
                 <div className={`${block}__container__title-container`}>
-                    <h3 className={`${block}__container__title`}>{account.currency === 'Dollar' ? 'US' : 'CR'}{account.accountNumber}</h3>
+                    <h3 className={`${block}__container__title`}>{currency.prefix}{account.accountNumber}</h3>
                 </div>
                 <div className={`${block}__container__description`}>
-                    <p className={`${block}__container__balance`}>{account.currency === 'Dollar' ? '$ ' : '₡ '}{account.accountBalance}</p>
-                    <p className={`${block}__container__currency`}>{account.currency}</p>
+                    <p className={`${block}__container__balance`}>{currency.symbol}{account.accountBalance}</p>
+                    <p className={`${block}__container__currency`}>{currency.name}</p>
                 </div>
             </div>
         </div>
