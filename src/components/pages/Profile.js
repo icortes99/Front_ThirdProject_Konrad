@@ -45,7 +45,7 @@ function Profile(){
                         <ul className={mode === 0 ? `${block}__show` : `${block}__show--hidden`}>
                             <li className={`${block}__show__li`}><p>Name: {user.name}</p></li>
                             <li className={`${block}__show__li`}><p>Last name: {user.lastname}</p></li>
-                            <li className={`${block}__show__li`}><p>ID: {user.lastname}</p></li>
+                            <li className={`${block}__show__li`}><p>ID: {user.idUser}</p></li>
                             <li className={`${block}__show__li`}><p>Source of income: {user.incomeSource}</p></li>
                         </ul>
                         <form method='PUT' className={mode === 1 ? `${block}__edit` : `${block}__edit--hidden`} onSubmit={submitForm}>
