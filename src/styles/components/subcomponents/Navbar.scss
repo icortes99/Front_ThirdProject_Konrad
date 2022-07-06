@@ -160,6 +160,31 @@
             text-decoration: underline;
         }
     }
+
+    &__back-button{
+        position: fixed;
+        left: 2rem;
+        top: 9rem;
+        background-color: white;
+        padding: .5rem .7rem;
+        border-radius: 1rem;
+        transition-duration: 500ms;
+
+        &__link{
+            display: flex;
+            text-decoration: none;
+            color: black;
+
+            & img{
+                margin-right: .5rem;
+            }
+        }
+
+        &:hover {
+            transform: scale(1.1);
+            transition-duration: 500ms
+        }
+    }
 }
 
 @media screen and (min-width: 600px) {

@@ -1,20 +1,42 @@
 @import '../../variables/Colors.scss';
 
 .profile{
+    &__root{
+        margin-top: 7.56rem;
+        background-color: rgb(228, 228, 228);
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 1rem;
+        padding-bottom: 2rem;
+    }
+
+    &__title{
+        margin: 0;
+        margin-top: 1rem;
+    }
     &__image-section{
         padding: 2rem;
         position: relative;
 
+        &__img-container {
+            width: 15rem;
+            height: 15rem;
+        }
+
         &__img{
-            width: 25rem;
-            height: 25rem;
-            border-radius: 10rem;
+            width: 100%;
+            height: 100%;
+            border-radius: 5rem;
         }
 
         &__edit-btn{
+            display: none;
             position: absolute;
             bottom: 0;
             border: 0;
+            right: 0;
             cursor: pointer;
             background: rgba($color: #000000, $alpha: 0);
             border-radius: 2rem;
@@ -35,7 +57,19 @@
     }
 
     &__show {
-        //
+        //box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.2);
+        padding: 1rem 3rem;
+        border-radius: 3rem;
+        list-style: none;
+        margin: 0;
+
+        &__li{
+            background-color: white;
+            padding: .0005rem .8rem;
+            margin-bottom: .5rem;
+            border-radius: 1rem;
+            box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.1);
+        }
     }
 
     &__show--hidden {

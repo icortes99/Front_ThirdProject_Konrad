@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import logo from '../../assets/logoname.png'
 import arrow from '../../assets/dropdown.png'
+import back from '../../assets/back.png'
 import '../../styles/components/subcomponents/Navbar.scss'
 
 function Navbar(props){
@@ -36,8 +37,15 @@ function Navbar(props){
                 <a className={`${block}__signup-link`} href='/login'>Log in</a>
             </div>
 
-            <div className={page === 4 ? `${block}__dropdown-container` : `${block}__dropdown-container--hide`}>
+            <div className={page === 4 || page === 5 ? `${block}__dropdown-container` : `${block}__dropdown-container--hide`}>
                 <button onClick={signout} className={`${block}__signup-button`}>Sign out</button>
+            </div>
+
+            <div className={page === 5 ? `${block}__back-button` : `${block}__back-button--hide`}>
+                <a href='/dashboard' className={`${block}__back-button__link`}>
+                    <img src={back} alt='go back icon' width='20rem'/>
+                    Go back
+                </a>
             </div>
 
             <div className={ page === 1 ? `${block}__home-buttons` : `${block}__home-buttons--hide`}>

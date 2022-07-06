@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import '../../styles/components/pages/Profile.scss'
 import editIcon from '../../assets/edit.png'
+import Navbar from '../subcomponents/Navbar'
+import Footer from '../subcomponents/Footer'
 
 function Profile(){
     const block = 'profile'
@@ -16,8 +18,8 @@ function Profile(){
         "exp": 1656773249
     }
     const [mode, setMode] = useState(0)
-    const userLoggedIn = sessionStorage.getItem('data').token
-    console.log(JSON.parse(sessionStorage.getItem('data')).photo)
+    const sessionData = JSON.parse(sessionStorage.getItem('data'))
+    const user = sessionData[0]
 
     const submitForm = (e)=>{
         e.preventDefault()
@@ -26,21 +28,25 @@ function Profile(){
 
     return(
         <>
-            { userLoggedIn !== null ? <>
-                <div>
+            { user.token !== null ? <>
+                <Navbar
+                page={5}/>
+                <main className={`${block}__root`}>
+                    <h1 className={`${block}__title`}>Profile</h1>
                     <section className={`${block}__image-section`}>
-                        <img src={JSON.parse(sessionStorage.getItem('data')).photo} alt='profile image' className={`${block}__image-section__img`}/>
+                        <div className={`${block}__image-section__img-container`}>
+                            <img src={user.photo} alt='profile image' className={`${block}__image-section__img`}/>
+                        </div>
                         <button onClick={()=>setMode(1)} className={`${block}__image-section__edit-btn`}>
                             <img src={editIcon} alt='edit icon' className={`${block}__image-section__edit`}/>
                         </button>
                     </section>
                     <section className={`${block}__description-section`}>
                         <ul className={mode === 0 ? `${block}__show` : `${block}__show--hidden`}>
-                            <li><p>Name: {hardCodedUser.name}</p></li>
-                            <li><p>Last name: {hardCodedUser.lastname}</p></li>
-                            <li><p>ID: {hardCodedUser.idUser}</p></li>
-                            <li><p>Email: {hardCodedUser.email}</p></li>
-                            <li><p>Source of income: {hardCodedUser.incomeSource}</p></li>
+                            <li className={`${block}__show__li`}><p>Name: {user.name}</p></li>
+                            <li className={`${block}__show__li`}><p>Last name: {user.lastname}</p></li>
+                            <li className={`${block}__show__li`}><p>ID: {user.lastname}</p></li>
+                            <li className={`${block}__show__li`}><p>Source of income: {user.incomeSource}</p></li>
                         </ul>
                         <form method='PUT' className={mode === 1 ? `${block}__edit` : `${block}__edit--hidden`} onSubmit={submitForm}>
                             <div>
@@ -72,7 +78,8 @@ function Profile(){
                             <button>Submit</button>
                         </form>
                     </section>
-                </div>
+                </main>
+                <Footer/>
             </> : <h1>You have not access to this page</h1>}
         </>
     )

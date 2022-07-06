@@ -36,7 +36,7 @@ function History(){
     return(
         <>
             { userLoggedIn !== null ?<>
-                <Navbar page={4}/>
+                <Navbar page={5}/>
                 <div className={`${block}__root`}>
                     <h1>History</h1>
                     <table className={`${block}__logs-container`}>
