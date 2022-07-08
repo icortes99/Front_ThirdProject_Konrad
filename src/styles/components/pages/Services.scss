@@ -66,6 +66,18 @@
         &:hover{
             @include button-hover;
         }
+
+        &--disabled {
+            background-color: gray;
+            cursor: auto;
+
+            &:hover {
+                box-shadow: none;
+                background-color: gray;
+                color: black;
+                transition-duration: 500ms;
+            }
+        }
     }
 
     &__destiny-user {

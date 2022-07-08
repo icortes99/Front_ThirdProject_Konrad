@@ -65,23 +65,18 @@ function LogIn(){
                             <input type='password' name='password' onChange={handleChange} placeholder='Password' className={`${block}__form__input`} required/>
                             <button onClick={loginAction} type='submit' className={`${block}__form__button`}>Log in</button>
                         </form>
-                    </div>
-                    <div className={`${block}__signup-container--shadow`}>
-                        <div className={`${block}__signup-container--shape`}>
-                            <div className={`${block}__signup-container`}>
-                                <p className={`${block}__signup-container__text`}>Not have an account yet?</p>
-                                <a className={`${block}__signup-container__link`} href='/signup'>Sign up</a>
-                            </div>
-                        </div>
+                        <p className={`${block}__signup-container__text`}>Not have an account yet?</p>
+                        <a className={`${block}__signup-container__link`} href='/signup'>Sign up</a>
                     </div>
                 </div>
             </main>
+            { 
             <InfoModal
             visible={modalVisible}
             setVisible={setModalVisible}
             toggle={0}
             msg={messageModal}
-            time={3000}/>
+            time={3000}/>}
             <Footer/>
         </div>
     )

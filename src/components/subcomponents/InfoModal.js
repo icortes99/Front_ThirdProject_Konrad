@@ -15,8 +15,9 @@ function InfoModal(props){
         }
     }, [visible])
 
-    return(
-        <div className={visible ? (toggle === 0 ? `${block}__root ${block}__root--error` : `${block}__root ${block}__root--success`) : 
+    return(<>
+        {
+            <div className={visible ? (toggle === 0 ? `${block}__root ${block}__root--error` : `${block}__root ${block}__root--success`) : 
         (toggle === 0 ? `${block}__root ${block}__root--hidden ${block}__root--error` : `${block}__root ${block}__root--hidden ${block}__root--success`)}>
             <div className={`${block}__icon-container`}>
                 { toggle === 0 ?
@@ -27,7 +28,7 @@ function InfoModal(props){
             <div className={`${block}__text-container`}>
                 <p className={`${block}__text-container__text`}>{msg ? msg : 'Default message'}</ p>
             </div>
-        </div>
+        </div>}</>
     )
 }
 export default InfoModal

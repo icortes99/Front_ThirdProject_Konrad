@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import '../../styles/components/pages/SignUp.scss'
 import Navbar from '../subcomponents/Navbar'
 import Footer from '../subcomponents/Footer'
+import InfoModal from '../subcomponents/InfoModal'
 
 function SignUp(){
     const [userObject, setUserObject] = useState({
@@ -16,9 +17,11 @@ function SignUp(){
     const block = 'signup'
     const [currentTab, setCurrentTab] = useState(0)
     const [loadImg, setLoadImg] = useState(false)
+    const [everythingGood, setEverythingGood] = useState(false)
+    const [modal, setModal] = useState(false)
 
     function handleChange(e){
-        e.preventDefault()
+        //e.preventDefault()
         const value = e.target.value
         if(e.target.name !== 'confirmpassword'){
             setUserObject({
@@ -40,13 +43,13 @@ function SignUp(){
             } else {
                 //setCurrentTab(currentTab + x)
                 //console.log('obj: ' + JSON.stringify(userObject))
-                /*fetch('https://api-third-project.herokuapp.com/users/signup',{
+                fetch('https://api-third-project.herokuapp.com/users/signup',{
                     method: 'POST',
                     body: JSON.stringify(userObject),
                     headers: {"Content-type": "application/json; charset=UTF-8"}
                 }).then(response => response.json())
-                .then(data => console.log('response: ' + JSON.stringify(data)))
-                .catch(err => console.log('Error when sign up: ' + err))*/
+                .then(data => setEverythingGood(data))
+                .catch(err => setEverythingGood(null))
             }
         }
     }
@@ -71,6 +74,22 @@ function SignUp(){
         })
         .catch(err=>console.log('Error: ' + err))
     }
+
+    useEffect(()=>{
+        if(everythingGood){
+            setModal(true)
+            setUserObject({
+                idUser: '',
+                email: '',
+                name: '',
+                lastname: '',
+                password: '',
+                incomeSource: '',
+                photo: 'https://res.cloudinary.com/dhe2iy0sa/image/upload/v1656432805/unknown_tic5vv.jpg'
+            })
+            setTimeout(()=>{window.location.href = '/login'}, 4000)
+        }
+    }, [everythingGood])
 
     return(
         <>
@@ -117,7 +136,7 @@ function SignUp(){
                         <form onSubmit={(e)=>changeTab(e, 1)} action='POST' className={currentTab === 1 ? `${block}__signup-tab ${block}__signup-tab--show` : `${block}__signup-tab`}>
                             <div className={`${block}__input-container`}>
                                 <label htmlFor='inID' className={`${block}__input-container__label`}>ID</label>
-                                <input id='inID' type='text' name='idUser' onChange={handleChange} pattern='[0-9],{8}$' required className={`${block}__input-container__input`}/>
+                                <input id='inID' type='text' name='idUser' onChange={handleChange} minLength={8} maxLength={8} required className={`${block}__input-container__input`}/>
                             </div>
                             <div className={`${block}__input-container`}>
                                 <label htmlFor='inName' className={`${block}__input-container__label`}>Name</label>
@@ -129,7 +148,7 @@ function SignUp(){
                             </div>
                             
                             <div className={`${block}__button-container`}>
-                                <button onClick={()=>setCurrentTab(-1)} className={`${block}__button`}>Previous</button>
+                                <button onClick={()=>setCurrentTab(0)} className={`${block}__button`}>Previous</button>
                                 <button className={`${block}__button`}>Next</button>
                             </div>
                         </form>
@@ -145,7 +164,7 @@ function SignUp(){
                             </div>
                             <div className={`${block}__input-container`}>
                                 <label htmlFor='inIS' className={`${block}__input-container__label`}>Income source: </label>
-                                <select name='incomeSource' id='inIS'>
+                                <select name='incomeSource' id='inIS' onChange={handleChange}>
                                     <option value='Employed'>Employed / Salaried</option>
                                     <option value='Business Owner'>Business Owner</option>
                                     <option value='Self-Employed'>Self-Employed</option>
@@ -162,6 +181,13 @@ function SignUp(){
                         </form>
                     </div>
                 </div>
+                { modal &&
+                <InfoModal
+                visible={modal}
+                setVisible={setModal}
+                toggle={everythingGood ? 1 : 0}
+                msg={everythingGood ? 'Sign up completed' : 'Something went wrong'}
+                time={3000}/>}
             </main>
             <Footer/>
         </>

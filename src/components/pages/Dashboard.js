@@ -14,7 +14,7 @@ function Dashboard(){
 
     return(
         <>
-        {userLoggedIn !== null ?
+        { sessionData && userLoggedIn !== null ?
             <> 
             <Navbar
             page={4}/>

@@ -86,3 +86,22 @@
         display: none;
     }
 }
+
+@media screen and (min-width: 900px) {
+    .profile {
+        &__card {
+            display: flex;
+            flex-direction: row;
+            height: 35rem;
+            align-items: center;
+        }
+
+        &__image-section {
+
+            &__img-container {
+                width: 20rem;
+                height: 20rem;
+            }
+        }
+    }
+}

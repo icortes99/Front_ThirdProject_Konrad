@@ -31,12 +31,12 @@
     }
 
     &__root--hidden{
-        transform: scaleX(0);
+        transform: scaleX(-10);
         transition-duration: 500ms;
         animation: hide__slide 1000ms ease forwards;
     }
     @keyframes hide__slide {
-        00% {
+        0% {
             transform: scaleX(1);
             transform: translateX(0rem);
         }    
@@ -56,7 +56,7 @@
     }
 
     &__root--success {
-        background: linear-gradient(black, black, black, black, rgb(21, 255, 0));
+        background: linear-gradient(black, black, black, black, rgb(18, 214, 0));
     }
 
     &__icon-container{
